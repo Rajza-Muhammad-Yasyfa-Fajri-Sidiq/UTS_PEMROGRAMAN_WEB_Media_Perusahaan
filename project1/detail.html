@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Detail Informasi Perusahaan</title>
+
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts & CSS sama seperti index -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Montserrat:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Topbar bisa sama -->
+    <section id="topbar" class="topbar d-flex align-items-center">
+      <div
+        class="container d-flex justify-content-center justify-content-md-between"
+      >
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope d-flex align-items-center">
+            <a href="mailto:info@mediaperusahaan.com"
+              >info@mediaperusahaan.com</a
+            >
+          </i>
+          <i class="bi bi-phone d-flex align-items-center ms-4">
+            <span>+62 812-3456-7890</span>
+          </i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Header sederhana -->
+    <header id="header" class="header d-flex align-items-center">
+      <div
+        class="container-fluid container-xl d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1>MediaPerusahaan<span>.</span></h1>
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#informasi">Informasi</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+    </header>
+
+    <main id="main" class="mt-4">
+      <div class="container" data-aos="fade-up">
+        <div id="detail-wrapper" class="py-5">
+          <!-- konten diisi via JS -->
+        </div>
+
+        <a
+          href="index.html#informasi"
+          class="btn btn-outline-primary btn-sm mb-5"
+        >
+          <i class="bi bi-arrow-left"></i> Kembali ke Halaman Utama
+        </a>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="container mt-4 text-center">
+        <div class="copyright">@Copyright by NPM_NAMA MAHASISWA_KELAS</div>
+      </div>
+    </footer>
+
+    <a
+      href="#"
+      class="scroll-top d-flex align-items-center justify-content-center"
+    >
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <div id="preloader"></div>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Script kecil untuk ambil id dan tampilkan konten -->
+    <script>
+      const dataInformasi = {
+        1: {
+          judul: "Profil Perusahaan",
+          kategori: "Umum",
+          isi: `
+          Perusahaan ini bergerak di bidang layanan teknologi informasi yang menyediakan
+          berbagai solusi digital untuk kebutuhan bisnis. Fokus utama perusahaan adalah
+          membantu klien meningkatkan efisiensi dan kualitas layanan melalui pemanfaatan teknologi.
+        `,
+        },
+        2: {
+          judul: "Layanan Utama",
+          kategori: "Layanan",
+          isi: `
+          Layanan utama meliputi pengembangan aplikasi berbasis web dan mobile,
+          integrasi sistem, konsultasi IT, serta pemeliharaan infrastruktur teknologi
+          secara berkala.
+        `,
+        },
+        3: {
+          judul: "Keunggulan Kompetitif",
+          kategori: "Keunggulan",
+          isi: `
+          Keunggulan perusahaan terletak pada pengalaman tim, penggunaan teknologi
+          yang selalu diperbarui, serta komitmen terhadap mutu layanan dan kepuasan pelanggan.
+        `,
+        },
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      const wrapper = document.getElementById("detail-wrapper");
+
+      if (dataInformasi[id]) {
+        const item = dataInformasi[id];
+        wrapper.innerHTML = `
+        <h1 class="mb-3">${item.judul}</h1>
+        <p class="text-muted mb-2">Kategori: ${item.kategori}</p>
+        <hr>
+        <p>${item.isi}</p>
+      `;
+      } else {
+        wrapper.innerHTML = `
+        <div class="alert alert-danger">
+          Informasi yang Anda pilih tidak ditemukan.
+        </div>
+      `;
+      }
+    </script>
+  </body>
+</html>
